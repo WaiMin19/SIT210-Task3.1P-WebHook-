@@ -1,0 +1,20 @@
+#include "Adafruit_DHT.h"
+DHT dht(D5, DHT11);
+
+int light = D7;
+int board_light = D5;
+void setup() {
+	pinMode(LED4,OUTPUT);
+	dht.begin();
+}
+
+void loop() {
+  digitalWrite(LED4, HIGH);   // Turn ON the LED
+  
+  String temp = String(random(20, 22));
+  Particle.publish("temp", String(temp), PRIVATE);
+  delay(10000);               // Wait for 10 seconds
+
+  digitalWrite(LED4, LOW);    // Turn OFF the LED
+  delay(10000);               // Wait for 10 seconds
+}
